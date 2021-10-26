@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.jms.Queue;
 import javax.jms.Topic;
 
-@Configuration
+//@Configuration
 public class ActiveConfig {
     @Bean
     public Queue firstQueue(){

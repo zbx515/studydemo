@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import javax.jms.MapMessage;
 import javax.jms.Message;
 
-@Component
+//@Component
 public class Recever {
     @JmsListener(destination = "test")
     public void receverQueue(Message message)throws Exception{

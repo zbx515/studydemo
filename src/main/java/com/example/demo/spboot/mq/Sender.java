@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 import javax.jms.Queue;
 import javax.jms.Topic;
 
-@Component
+//@Component
 public class Sender {
 
     @Resource
