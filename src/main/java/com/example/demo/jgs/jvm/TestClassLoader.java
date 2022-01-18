@@ -2,16 +2,29 @@ package com.example.demo.jgs.jvm;
 
 import java.io.*;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 public class TestClassLoader extends ClassLoader {
 
     public static void main(String[] args) throws Exception{
+        ArrayList<Object> objects = new ArrayList<>();
         TestClassLoader loader = new TestClassLoader();
-        Class<?> defineClass = loader.findClass("");
-        Object instance = defineClass.newInstance();
-        Method method = defineClass.getMethod("m");
-        method.invoke(instance);
-        System.out.println("自定义类加载器..."+defineClass.getName());
+        for (int i = 0; i < 2; i++) {
+            System.out.println("classloader -------------");
+            System.out.println(loader);
+            Class<?> defineClass = loader.findClass("");
+            objects.add(defineClass);
+            System.out.println("defineClass -------------");
+            System.out.println(defineClass);
+            Object instance = defineClass.newInstance();
+            /*Method method = defineClass.getMethod("m");
+            method.invoke(instance);*/
+            System.out.println("自定义类加载器..."+instance);
+        }
+        for (int i = 0; i < objects.size(); i++) {
+            System.out.println(objects.get(i));
+            System.out.println(objects.get(0)==objects.get(1));
+        }
     }
 
     @Override

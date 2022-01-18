@@ -8,10 +8,10 @@ import java.util.concurrent.ExecutionException;
 
 public class ComplateFutureTest {
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
-        CompletableFuture<Integer> a = CompletableFuture.supplyAsync(()->backa());
-        CompletableFuture<Integer> b = CompletableFuture.supplyAsync(()->backb());
-        CompletableFuture.allOf(a,b).join();
-        System.in.read();
+        Integer a = CompletableFuture.supplyAsync(() -> backa()).join();
+        Integer b = CompletableFuture.supplyAsync(() -> backb()).join();
+        //CompletableFuture.allOf(a, b).join();
+        System.out.println(a+b);
     }
 
     public static Integer backa(){

@@ -1,6 +1,7 @@
 package com.example.demo.spboot.controller;
 
 import com.example.demo.spboot.redislock.RedisLockUtil;
+import org.redisson.api.RList;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,19 @@ public class RedisController {
     private int count = 1;
     private CyclicBarrier cyclicBarrier = new CyclicBarrier(100);
 
+    @RequestMapping("set")
+    @ResponseBody
+    public String setRedis(){
+        RList<String> wtyw = redissonClient.getList("wtyw");
+        for (int i = 0; i < 100; i++) {
+            wtyw.add("我是第 "+i+"个");
+        }
+        return "ok";
+    }
 
     @RequestMapping("redis")
     @ResponseBody
     public String redis(){
-
         for (int i = 0; i < 100; i++) {
             new Thread(()->{
                 try {
